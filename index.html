@@ -24,7 +24,7 @@
         <section class="intro-section" data-step="0">
             <h1 class="massive-text">
                 Dear <img src="base-logo.png" alt="Base" class="base-logo">, <br>
-                I’m <span class="num serif-text">Suyeon,</span> applying for the 2026 Summer Creative Internship.
+                I’m <span class="num serif-text">Suyeon</span>, applying for the 2026 Summer Creative Internship.
             </h1>
             <p class="sub-lead serif-text">
                 Here are some reasons<sup class="reasons-nav serif-italic"><a href="#reason-1">1</a>, <a href="#reason-2">2</a>, <a href="#reason-3">3</a>,</sup> why you should hire me:
@@ -33,33 +33,48 @@
 
         <!-- Reason 1: Yellow Background -->
         <section id="reason-1" class="reason-section" data-step="1">
-            <div class="reason-content">
-                <span class="num serif-text">1</span>
-                <p class="massive-text">
-                    I’m an interdisciplinary designer who writes, codes, and makes interactive work. I’m sure I can be a great asset to your team. Check out my <span class="num serif-text"><a href="https://suyeonkimdesign.com/" target="_blank" class="text-link">portfolio site.</a></span>
-                </p>
-            </div>
-        </section>
+    <div class="reason-content">
+        <span class="num serif-italic">1</span>
+        <p class="massive-text target-text">
+            I’m a branding-focused designer who explores through code, motion, and
+            <span class="interactive-container">
+                <span class="word-toggle">interaction</span>
+                <!-- Clean pill toggle switch -->
+                <label class="switch-pill">
+                    <input type="checkbox" id="dismantle-toggle">
+                    <span class="slider"></span>
+                </label>
+            </span> 
+         Check out my <span class="portfolio-tracking-anchor num serif-italic"><a href="https://suyeonkimdesign.com/" target="_blank" class="text-link">portfolio site.</a></span>
+        </p>
+    </div>
+</section>
 
         <!-- Reason 2: Blue Background -->
         <section id="reason-2" class="reason-section" data-step="2">
             <div class="reason-content">
-                <span class="num serif-text">2</span>
+                <span class="num serif-italic">2</span>
                 <p class="massive-text">
-                    I’m a thinker. In this day and age of AI, I’ve been valuing how humans think even more. I love making connections and making those ideas happen <span class="serif-text">(like this site)</span>. Sometimes the connection can be weird, but I truly believe that there is no bad idea, and that good design comes from sharing and talking with others.
+                    I’m a thinker. In this day and age of AI, I’ve been valuing how humans think even more. I love writing, making random connections, and prototyping ideas <span class="serif-text">(like this site)</span>. Sometimes the connection can be weird, but I truly believe that there is no bad idea, and that good design comes from sharing ideas and constant revisions.
                 </p>
             </div>
         </section>
 
-        <!-- Reason 3: Pink Background -->
-        <section id="reason-3" class="reason-section" data-step="3">
-            <div class="reason-content">
-                <span class="num serif-text">3</span>
-                <p class="massive-text">
-                    Lastly... I LOVE BASE! I love how the studio builds a world around a brand. I would love to join the team this summer to build out those worlds.
-                </p>
-            </div>
-        </section>
+<!-- Reason 3: Pink Background -->
+<section id="reason-3" class="reason-section" data-step="3">
+    <div class="reason-content">
+        <span class="num serif-text">3</span>
+        <p class="massive-text">
+            Lastly... I 
+            <span class="heart-container">
+                <svg class="heart-shape-svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+            </span> 
+            Base! I love how the studio builds a world around a brand. I would love to join the team this summer to build out those worlds.
+        </p>
+    </div>
+</section>
 
         <!-- Outro Section (Returns to Off-White) -->
         <section class="outro-section" data-step="0">
@@ -93,5 +108,8 @@
 
         sections.forEach(section => observer.observe(section));
     </script>
+
+    <script src="script.js"></script>
+
 </body>
 </html>

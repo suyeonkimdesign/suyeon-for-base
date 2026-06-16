@@ -166,3 +166,202 @@ section {
 .text-link:hover {
     opacity: 0.6;
 }
+
+/* --- Floating / Morphing Portfolio Widget --- */
+.portfolio-fixed-box {
+    position: fixed;
+    top: 24px;
+    right: 20px; /* Aligns cleanly with your 20px layout padding constraint */
+    z-index: 9999; /* Guarantees it sits above all exploding text layers */
+    
+    /* Structural Styling */
+    padding: 12px 20px;
+    background-color: var(--text-dark); /* Dark black box by default */
+    color: var(--color-offwhite);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 5px;
+    white-space: nowrap;
+    
+    /* Hardware-accelerated property transition engine */
+    transition: 
+        top 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+        left 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+        width 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+        height 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+        border-radius 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+        background-color 0.4s ease,
+        color 0.4s ease;
+}
+
+.portfolio-fixed-box .arrow {
+    display: inline-block;
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-fixed-box:hover .arrow {
+    transform: translate(2px, -2px);
+}
+
+/* Helper state for when the widget is actively highlighting the inline word */
+.portfolio-fixed-box.is-highlighting {
+    background-color: transparent;
+    border: 3px solid var(--text-dark); /* Mimics a clean outline highlight box */
+    color: var(--text-dark);
+    font-size: inherit; /* Fluidly adapts sizing to match your massive inline text structure */
+}
+
+/* Switches outline color to light contrast when morphing on the dark blue background step */
+body.bg-step-2 .portfolio-fixed-box.is-highlighting {
+    border-color: var(--text-light);
+    color: var(--text-light);
+}
+
+/* Hide the main widget text and arrow smoothly when morphing down into the page word */
+.portfolio-fixed-box.is-highlighting {
+    color: transparent; 
+}
+
+/* Structural container for the inline layout tracking anchor */
+.portfolio-tracking-anchor {
+    display: inline-block;
+    position: relative;
+}
+
+.heart-container {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    padding: 0 0.05em;
+}
+
+.heart-shape-svg {
+    /* Height matches the line's em scaling, making it scale flawlessly with the typography text */
+    height: 1.2em; 
+    width: auto;
+    display: inline-block;
+}
+
+/* Apply the heartbeat animation loop to the element container */
+.heart-shape, .heart-shape-svg {
+    display: inline-block;
+    color: currentColor;
+    transform-origin: center center;
+    
+    /* Configured to execute exactly 1 time per second, repeating infinitely */
+    animation: baseHeartbeat 1s infinite ease-in-out;
+}
+
+/* 
+  Custom Keyframes Timeline (1s total loop duration):
+  0.0s to 0.5s: Two explicit scale jumps (the "lub-dub" rhythm)
+  0.5s to 1.0s: Linear hold at normal scaling to represent the resting phase
+*/
+@keyframes baseHeartbeat {
+    0% {
+        transform: scale(1);
+    }
+    12% {
+        transform: scale(1.22); /* First spike */
+    }
+    25% {
+        transform: scale(1.03); /* Intermediary dip */
+    }
+    38% {
+        transform: scale(1.28); /* Second, slightly heavier spike */
+    }
+    50% {
+        transform: scale(1);    /* Return to resting scale by exactly 0.5 seconds */
+    }
+    100% {
+        transform: scale(1);    /* Flat rest phase through the remaining 0.5 seconds */
+    }
+}
+
+/* --- Interactive Toggle Layout Optimized --- */
+.interactive-container {
+    display: inline-flex;
+    align-items: center;
+    /* Aligns container perfectly to the middle of the text line */
+    vertical-align: middle; 
+    gap: 15px;
+    position: relative;
+    /* Forces the word "interactive" and its toggle to stay on a higher layer */
+    z-index: 10; 
+}
+
+.word-toggle {
+    display: inline-block;
+    transform: translateY(-0.15em);
+}
+
+/* UI Pill Switch - Scaled up and isolated */
+.switch-pill {
+    position: relative;
+    display: inline-block;
+    /* Increased sizing to make it more prominent and clickable */
+    width: 150px; 
+    height: 75px;
+    /* Forces the pill itself to sit on the absolute topmost layer */
+    z-index: 100; 
+    cursor: pointer;
+}
+
+.switch-pill input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+    transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    border-radius: 100px;
+}
+
+body.bg-step-2 .slider {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    /* Proportionally scaled inner toggle knob */
+    height: 65px;
+    width: 65px;
+    left: 4px;
+    bottom: 4.5px;
+    background-color: currentColor;
+    transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: rgba(0, 0, 0, 0.35);
+}
+body.bg-step-2 input:checked + .slider {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+input:checked + .slider:before {
+    /* (150px track width) - (65px knob width) - (8px for left/right padding) = 77px */
+    transform: translateX(77px); 
+}
+
+/* --- Dismantle Typography Core Rules --- */
+.target-text .letter {
+    display: inline-block;
+    white-space: pre;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-origin: center;
+}
+
+/* Crucial Fix: Prevents exploded letters from blocking mouse events or layout clicks */
+.target-text .letter.exploded {
+    pointer-events: none;
+}
