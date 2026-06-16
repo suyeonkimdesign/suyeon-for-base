@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suyeon for Base</title>
+    <!-- Adobe Typekit Stylesheet containing Forma DJR Banner & Instrument Serif/Sans -->
+    <link rel="stylesheet" href="https://use.typekit.net/hrk4ois.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS to invert the logo color */
+        .base-logo {
+            filter: invert(1);
+            height: 0.75em; /* Ensures the logo scales with the text size */
+            transform: translateY(-0.05em);
+            vertical-align: bottom; /* Aligns the logo with the text baseline */
+        }
+    </style>
+</head>
+<body class="bg-step-0">
+
+    <main class="container">
+        <!-- Intro Section (Triggers Off-White State 0) -->
+        <section class="intro-section" data-step="0">
+            <h1 class="massive-text">
+                Dear <img src="base-logo.png" alt="Base" class="base-logo">, <br>
+                I’m <span class="num serif-text">Suyeon,</span> applying for the 2026 Summer Creative Internship.
+            </h1>
+            <p class="sub-lead serif-text">
+                Here are some reasons<sup class="reasons-nav serif-italic"><a href="#reason-1">1</a>, <a href="#reason-2">2</a>, <a href="#reason-3">3</a>,</sup> why you should hire me:
+            </p>
+        </section>
+
+        <!-- Reason 1: Yellow Background -->
+        <section id="reason-1" class="reason-section" data-step="1">
+            <div class="reason-content">
+                <span class="num serif-text">1</span>
+                <p class="massive-text">
+                    I’m an interdisciplinary designer who writes, codes, and makes interactive work. I’m sure I can be a great asset to your team. Check out my <span class="num serif-text"><a href="https://suyeonkimdesign.com/" target="_blank" class="text-link">portfolio site.</a></span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Reason 2: Blue Background -->
+        <section id="reason-2" class="reason-section" data-step="2">
+            <div class="reason-content">
+                <span class="num serif-text">2</span>
+                <p class="massive-text">
+                    I’m a thinker. In this day and age of AI, I’ve been valuing how humans think even more. I love making connections and making those ideas happen <span class="serif-text">(like this site)</span>. Sometimes the connection can be weird, but I truly believe that there is no bad idea, and that good design comes from sharing and talking with others.
+                </p>
+            </div>
+        </section>
+
+        <!-- Reason 3: Pink Background -->
+        <section id="reason-3" class="reason-section" data-step="3">
+            <div class="reason-content">
+                <span class="num serif-text">3</span>
+                <p class="massive-text">
+                    Lastly... I LOVE BASE! I love how the studio builds a world around a brand. I would love to join the team this summer to build out those worlds.
+                </p>
+            </div>
+        </section>
+
+        <!-- Outro Section (Returns to Off-White) -->
+        <section class="outro-section" data-step="0">
+            <h2 class="massive-text">
+                Have a wonderful day, and reach out to me at 
+                <span class="num serif-text"><a href="mailto:suyeonkdesign@gmail.com" class="text-link">suyeonkdesign@gmail.com</a></span>
+            </h2>
+        </section>
+    </main>
+
+    <script>
+        // Intersection Observer to handle seamless stepping up and down through the scroll timeline
+        const sections = document.querySelectorAll('[data-step]');
+        const body = document.body;
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-25% 0px -45% 0px', // Triggers accurately when a section sweeps into active focus
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const step = entry.target.getAttribute('data-step');
+                    body.className = '';
+                    body.classList.add(`bg-step-${step}`);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
