@@ -67,12 +67,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Append this logic directly inside your DOMContentLoaded block in script.js
+// Append this logic directly inside your DOMContentLoaded block in script.js
 const widget = document.getElementById('portfolio-widget');
 const anchor = document.querySelector('.portfolio-tracking-anchor');
 
+// Variables to permanently store the resting dimensions
+let defaultWidth = 0;
+let defaultHeight = 0;
+
+function setupWidgetDimensions() {
+    if (!widget) return;
+    
+    // 1. Temporarily disable transitions so the browser doesn't try to animate our measurements
+    widget.style.transition = 'none';
+    
+    // 2. Clear out any inline styles to get its natural flex size
+    widget.classList.remove('is-highlighting');
+    widget.style.width = '';
+    widget.style.height = '';
+    widget.style.left = '';
+    widget.style.top = '';
+    
+    // 3. Measure the exact natural size of your text string
+    defaultWidth = widget.offsetWidth;
+    defaultHeight = widget.offsetHeight;
+    
+    // 4. Force a browser reflow, then restore the smooth transition engine
+    widget.offsetHeight; 
+    widget.style.transition = ''; 
+    
+    // 5. Now that we have exact numbers, place it mathematically
+    updateWidgetPosition();
+}
+
 function updateWidgetPosition() {
-    if (!widget || !anchor) return;
+    if (!widget || !anchor || defaultWidth === 0) return;
 
     const anchorRect = anchor.getBoundingClientRect();
     
@@ -87,28 +116,30 @@ function updateWidgetPosition() {
     if (isInViewport) {
         // MORPH STATE: Lock the coordinates directly onto the inline text boundaries
         widget.classList.add('is-highlighting');
-        widget.style.position = 'fixed';
-        widget.style.top = `${anchorRect.top - 6}px`;     // Safe padding adjustment offset
-        widget.style.left = `${anchorRect.left - 10}px`;  // Safe padding adjustment offset
+        widget.style.top = `${anchorRect.top - 6}px`;     
+        widget.style.left = `${anchorRect.left - 10}px`;  
         widget.style.width = `${anchorRect.width + 20}px`;
         widget.style.height = `${anchorRect.height + 12}px`;
-        widget.style.borderRadius = '0px'; // Snaps to a geometric sentence highlight box
     } else {
-        // RESET STATE: Return cleanly to the top-right corner system default
+        // GLIDE BACK STATE: Apply the exact saved dimensions to prevent stretching
         widget.classList.remove('is-highlighting');
         widget.style.top = '24px';
-        // Reset to original width calculations
-        widget.style.left = 'calc(100% - 170px)'; // Adjusts to stay tucked 20px from right edge cleanly
-        widget.style.width = '150px'; 
-        widget.style.height = '45px';
-        widget.style.borderRadius = '5px';
+        widget.style.width = `${defaultWidth}px`;
+        widget.style.height = `${defaultHeight}px`;
+        
+        // Calculate the exact left-side coordinate to fake a "right: 20px" anchor point
+        const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+        widget.style.left = `${viewportWidth - defaultWidth - 20}px`;
     }
 }
 
-// Attach listeners to handle calculations instantly during scrolling or window resizing
+// 1. Initialize dimensions perfectly on page load
+setupWidgetDimensions();
+
+// 2. Re-calculate safely on resize (in case window sizes change text layout)
+window.addEventListener('resize', setupWidgetDimensions);
+
+// 3. Fire the glide animation whenever the user scrolls
 window.addEventListener('scroll', updateWidgetPosition);
-window.addEventListener('resize', updateWidgetPosition);
-// Run once on load initialization to establish current location bounds
-updateWidgetPosition();
 
 });

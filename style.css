@@ -168,22 +168,28 @@ section {
 }
 
 /* --- Floating / Morphing Portfolio Widget --- */
+/* --- Floating / Morphing Portfolio Widget --- */
 .portfolio-fixed-box {
     position: fixed;
     top: 24px;
-    right: 20px; /* Aligns cleanly with your 20px layout padding constraint */
-    z-index: 9999; /* Guarantees it sits above all exploding text layers */
+    /* Removed 'right: 20px;' to prevent full-width stretching conflicts */
+    z-index: 9999; 
+    
+    /* Using inline-flex ensures it wraps tightly around your exact text string length */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
     
     /* Structural Styling */
     padding: 12px 20px;
-    background-color: var(--text-dark); /* Dark black box by default */
+    background-color: var(--text-dark); 
     color: var(--color-offwhite);
     font-family: var(--font-primary);
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: 500;
     text-decoration: none;
-    border-radius: 5px;
-    white-space: nowrap;
+    border-radius: 10px;
     
     /* Hardware-accelerated property transition engine */
     transition: 
@@ -198,7 +204,7 @@ section {
 
 .portfolio-fixed-box .arrow {
     display: inline-block;
-    margin-left: 6px;
+    margin-left: 8px;
     transition: transform 0.3s ease;
 }
 
@@ -208,27 +214,31 @@ section {
 
 /* Helper state for when the widget is actively highlighting the inline word */
 .portfolio-fixed-box.is-highlighting {
-    background-color: transparent;
-    border: 3px solid var(--text-dark); /* Mimics a clean outline highlight box */
-    color: var(--text-dark);
-    font-size: inherit; /* Fluidly adapts sizing to match your massive inline text structure */
+    background-color: #F2F0EF;
+    color: transparent; /* Seamlessly hides the "My Portfolio ↗" text string */
+    border-radius: 10px; /* Inherits the identical 10px rounding curve */
+    
+    /* Crucial Fix: Pushes the highlight box behind the inline typography */
+    z-index: -1; 
 }
 
-/* Switches outline color to light contrast when morphing on the dark blue background step */
+/* Dynamically changes the highlight block to a subtle dark translucent fill on the blue screen */
 body.bg-step-2 .portfolio-fixed-box.is-highlighting {
-    border-color: var(--text-light);
-    color: var(--text-light);
-}
-
-/* Hide the main widget text and arrow smoothly when morphing down into the page word */
-.portfolio-fixed-box.is-highlighting {
-    color: transparent; 
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Structural container for the inline layout tracking anchor */
 .portfolio-tracking-anchor {
     display: inline-block;
     position: relative;
+    /* Elevates the word text layer so the background highlight block slips underneath */
+    z-index: 1; 
+}
+
+/* Forces the link tag to stay clickable and visible over the highlight box */
+.portfolio-tracking-anchor .text-link {
+    position: relative;
+    z-index: 2;
 }
 
 .heart-container {
