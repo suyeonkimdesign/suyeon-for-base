@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suyeon for Base</title>
-    <!-- Adobe Typekit Stylesheet containing Forma DJR Banner & Instrument Serif/Sans -->
+    
     <link rel="stylesheet" href="https://use.typekit.net/hrk4ois.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* CSS to invert the logo color */
+        
         .base-logo {
             filter: invert(1);
-            height: 0.75em; /* Ensures the logo scales with the text size */
+            height: 0.75em; 
             transform: translateY(-0.05em);
-            vertical-align: bottom; /* Aligns the logo with the text baseline */
+            vertical-align: bottom; 
         }
     </style>
 </head>
@@ -23,7 +23,7 @@
 </a>
 
     <main class="container">
-        <!-- Intro Section (Triggers Off-White State 0) -->
+        
         <section class="intro-section" data-step="0">
             <h1 class="massive-text">
                 Dear <img src="base-logo.png" alt="Base" class="base-logo">, <br>
@@ -34,15 +34,15 @@
             </p>
         </section>
 
-        <!-- Reason 1: Yellow Background -->
+        
         <section id="reason-1" class="reason-section" data-step="1">
     <div class="reason-content">
         <span class="num serif-italic">1</span>
         <p class="massive-text target-text">
-            I’m a branding-focused designer who explores through code, motion, and
+            I’m a branding-focused designer who explores through code, <span class="weight-morph">motion</span>, and
             <span class="interactive-container">
                 <span class="word-toggle">interaction</span>
-                <!-- Clean pill toggle switch -->
+                
                 <label class="switch-pill">
                     <input type="checkbox" id="dismantle-toggle">
                     <span class="slider"></span>
@@ -53,17 +53,17 @@
     </div>
 </section>
 
-        <!-- Reason 2: Blue Background -->
+     
         <section id="reason-2" class="reason-section" data-step="2">
             <div class="reason-content">
                 <span class="num serif-italic">2</span>
                 <p class="massive-text">
-                    I’m a thinker. In this day and age of AI, I’ve been valuing how humans think even more. I love writing, making random connections, and prototyping ideas <span class="serif-text">(like this site)</span>. Sometimes the connection can be weird, but I truly believe that there is no bad idea, and that good design comes from sharing ideas and constant revisions.
+                    I’m a thinker. I love making ideas happen <span class="serif-text">(like this site)</span>. I truly believe that there is no bad idea, and the key to good design is constantly making things. <button id="make-btn" class="make-btn serif-italic">click</button>
                 </p>
             </div>
         </section>
 
-<!-- Reason 3: Pink Background -->
+
 <section id="reason-3" class="reason-section" data-step="3">
     <div class="reason-content">
         <span class="num serif-text">3</span>
@@ -79,7 +79,7 @@
     </div>
 </section>
 
-        <!-- Outro Section (Returns to Off-White) -->
+       
         <section class="outro-section" data-step="0">
             <h2 class="massive-text">
                 Have a wonderful day, and reach out at 
@@ -89,13 +89,13 @@
     </main>
 
     <script>
-        // Intersection Observer to handle seamless stepping up and down through the scroll timeline
+       
         const sections = document.querySelectorAll('[data-step]');
         const body = document.body;
 
         const observerOptions = {
             root: null,
-            rootMargin: '-25% 0px -45% 0px', // Triggers accurately when a section sweeps into active focus
+            rootMargin: '-25% 0px -45% 0px', 
             threshold: 0.1
         };
 

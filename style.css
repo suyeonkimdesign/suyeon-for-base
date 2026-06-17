@@ -1,4 +1,3 @@
-/* --- Design System Tokens --- */
 :root {
     --color-offwhite: #F2F0EF;
     --color-yellow: #F4D068;
@@ -8,17 +7,14 @@
     --text-dark: #1A1A1A;
     --text-light: #F2F0EF;
     
-    /* Font stacks updated to request your new styling */
     --font-primary: 'forma-djr-banner', sans-serif;
     --font-secondary: 'instrument-serif', serif;
 }
 
-/* Smooth scrolling behavior when clicking anchor nav elements */
 html {
     scroll-behavior: smooth;
 }
 
-/* --- Global Reset & Base Styles --- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -33,31 +29,13 @@ body {
     overflow-x: hidden;
 }
 
-/* --- Dynamic Background States --- */
-body.bg-step-0 {
-    background-color: var(--color-offwhite);
-    color: var(--text-dark);
-}
+body.bg-step-0 { background-color: var(--color-offwhite); color: var(--text-dark); }
+body.bg-step-1 { background-color: var(--color-yellow); color: var(--text-dark); }
+body.bg-step-2 { background-color: var(--color-blue); color: var(--text-light); }
+body.bg-step-3 { background-color: var(--color-pink); color: var(--text-dark); }
 
-body.bg-step-1 {
-    background-color: var(--color-yellow);
-    color: var(--text-dark);
-}
-
-body.bg-step-2 {
-    background-color: var(--color-blue);
-    color: var(--text-light);
-}
-
-body.bg-step-3 {
-    background-color: var(--color-pink);
-    color: var(--text-dark);
-}
-
-/* --- Layout & Core Sizing --- */
 .container {
     width: 100%;
-    /* Hard constraint of 20px on each side of the viewport */
     padding: 0 20px; 
 }
 
@@ -66,28 +44,22 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* Expanding content to fully fill up vertical screen space */
     padding: 4vh 0; 
 }
 
-/* --- Typography System --- */
 .massive-text {
-    font-size: 18vh; /* Amplified slightly to maximally pack and fill out viewport real estate */
-    font-weight: 500; /* Forma DJR Banner Medium */
+    font-size: 18vh; 
+    font-weight: 500; 
     line-height: 0.95;
     letter-spacing: 0.01em;
     max-width: 100%;
     word-wrap: break-word;
 }
 
-/* Fallback aspect ratio scaling for landscape viewports to guarantee fit without cropping */
 @media (min-aspect-ratio: 16/9) {
-    .massive-text {
-        font-size: 12.5vw;
-    }
+    .massive-text { font-size: 12.5vw; }
 }
 
-/* Scale uniform scaling across devices */
 @media (max-width: 768px) {
     .massive-text {
         font-size: 8vh;
@@ -96,44 +68,24 @@ section {
     }
 }
 
-/* Font switches for your specific serif selections */
-.serif-text {
-    font-family: var(--font-secondary);
-    font-style: regular;
-}
+.serif-text { font-family: var(--font-secondary); font-style: normal; }
+.serif-italic { font-family: var(--font-secondary); font-style: italic; }
 
-.serif-italic {
-    font-family: var(--font-secondary);
-    font-style: italic;
-}
-
-/* Enforcing unified text sizing for your inline serif blocks and list indicators */
 .num, .sub-lead {
     font-size: 18vh;
     line-height: 0.95;
     font-weight: 400;
 }
 
-@media (min-aspect-ratio: 16/9) {
-    .num, .sub-lead {
-        font-size: 12.5vw;
-    }
-}
+@media (min-aspect-ratio: 16/9) { .num, .sub-lead { font-size: 12.5vw; } }
+@media (max-width: 768px) { .num, .sub-lead { font-size: 8vh; line-height: 1.0; } }
 
-@media (max-width: 768px) {
-    .num, .sub-lead {
-        font-size: 8vh;
-        line-height: 1.0;
-    }
-}
-
-/* Styling for the superscript navigation */
 .reasons-nav {
-    font-size: 0.35em; /* Proportional scaling factor relative to massive text */
+    font-size: 0.35em; 
     vertical-align: super;
     line-height: 0;
     margin-left: 0.05em;
-    font-family: var(--font-secondary); /* Keeps it Instrument Serif */
+    font-family: var(--font-secondary); 
 }
 
 .reasons-nav a {
@@ -142,46 +94,33 @@ section {
     transition: opacity 0.2s ease;
 }
 
-.reasons-nav a:hover {
-    opacity: 0.5;
-    text-decoration: underline;
-}
+.reasons-nav a:hover { opacity: 0.5; text-decoration: underline; }
 
-/* Structural adjustment for counters */
 .reason-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-/* --- Interactive Elements --- */
 .text-link {
     color: inherit;
     text-decoration: underline;
     text-underline-offset: 0.1em;
     text-decoration-thickness: 0.04em;
     transition: opacity 0.3s ease;
+    white-space: nowrap;
 }
 
-.text-link:hover {
-    opacity: 0.6;
-}
+.text-link:hover { opacity: 0.6; }
 
-/* --- Floating / Morphing Portfolio Widget --- */
-/* --- Floating / Morphing Portfolio Widget --- */
 .portfolio-fixed-box {
     position: fixed;
     top: 24px;
-    /* Removed 'right: 20px;' to prevent full-width stretching conflicts */
     z-index: 9999; 
-    
-    /* Using inline-flex ensures it wraps tightly around your exact text string length */
     display: inline-flex;
     align-items: center;
     justify-content: center;
     white-space: nowrap;
-    
-    /* Structural Styling */
     padding: 12px 20px;
     background-color: var(--text-dark); 
     color: var(--color-offwhite);
@@ -191,7 +130,6 @@ section {
     text-decoration: none;
     border-radius: 10px;
     
-    /* Hardware-accelerated property transition engine */
     transition: 
         top 0.6s cubic-bezier(0.25, 1, 0.5, 1),
         left 0.6s cubic-bezier(0.25, 1, 0.5, 1),
@@ -208,34 +146,23 @@ section {
     transition: transform 0.3s ease;
 }
 
-.portfolio-fixed-box:hover .arrow {
-    transform: translate(2px, -2px);
-}
+.portfolio-fixed-box:hover .arrow { transform: translate(2px, -2px); }
 
-/* Helper state for when the widget is actively highlighting the inline word */
 .portfolio-fixed-box.is-highlighting {
     background-color: #F2F0EF;
-    color: transparent; /* Seamlessly hides the "My Portfolio ↗" text string */
-    border-radius: 10px; /* Inherits the identical 10px rounding curve */
-    
-    /* Crucial Fix: Pushes the highlight box behind the inline typography */
+    color: transparent; 
+    border-radius: 10px; 
     z-index: -1; 
 }
 
-/* Dynamically changes the highlight block to a subtle dark translucent fill on the blue screen */
-body.bg-step-2 .portfolio-fixed-box.is-highlighting {
-    background-color: rgba(255, 255, 255, 0.2);
-}
+body.bg-step-2 .portfolio-fixed-box.is-highlighting { background-color: rgba(255, 255, 255, 0.2); }
 
-/* Structural container for the inline layout tracking anchor */
 .portfolio-tracking-anchor {
     display: inline-block;
     position: relative;
-    /* Elevates the word text layer so the background highlight block slips underneath */
     z-index: 1; 
 }
 
-/* Forces the link tag to stay clickable and visible over the highlight box */
 .portfolio-tracking-anchor .text-link {
     position: relative;
     z-index: 2;
@@ -245,61 +172,40 @@ body.bg-step-2 .portfolio-fixed-box.is-highlighting {
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
-    padding: 0 0.05em;
+    padding: 0 0em;
+    line-height: 0;
 }
 
 .heart-shape-svg {
-    /* Height matches the line's em scaling, making it scale flawlessly with the typography text */
-    height: 1.2em; 
+    height: 1.1em; 
     width: auto;
     display: inline-block;
+    position: relative;
+    top: -0.1em;
 }
 
-/* Apply the heartbeat animation loop to the element container */
 .heart-shape, .heart-shape-svg {
     display: inline-block;
     color: currentColor;
     transform-origin: center center;
-    
-    /* Configured to execute exactly 1 time per second, repeating infinitely */
     animation: baseHeartbeat 1s infinite ease-in-out;
 }
 
-/* 
-  Custom Keyframes Timeline (1s total loop duration):
-  0.0s to 0.5s: Two explicit scale jumps (the "lub-dub" rhythm)
-  0.5s to 1.0s: Linear hold at normal scaling to represent the resting phase
-*/
 @keyframes baseHeartbeat {
-    0% {
-        transform: scale(1);
-    }
-    12% {
-        transform: scale(1.22); /* First spike */
-    }
-    25% {
-        transform: scale(1.03); /* Intermediary dip */
-    }
-    38% {
-        transform: scale(1.28); /* Second, slightly heavier spike */
-    }
-    50% {
-        transform: scale(1);    /* Return to resting scale by exactly 0.5 seconds */
-    }
-    100% {
-        transform: scale(1);    /* Flat rest phase through the remaining 0.5 seconds */
-    }
+    0% { transform: scale(1); }
+    12% { transform: scale(1.22); }
+    25% { transform: scale(1.03); }
+    38% { transform: scale(1.28); }
+    50% { transform: scale(1); }
+    100% { transform: scale(1); }
 }
 
-/* --- Interactive Toggle Layout Optimized --- */
 .interactive-container {
     display: inline-flex;
     align-items: center;
-    /* Aligns container perfectly to the middle of the text line */
     vertical-align: middle; 
     gap: 15px;
     position: relative;
-    /* Forces the word "interactive" and its toggle to stay on a higher layer */
     z-index: 10; 
 }
 
@@ -308,23 +214,16 @@ body.bg-step-2 .portfolio-fixed-box.is-highlighting {
     transform: translateY(-0.15em);
 }
 
-/* UI Pill Switch - Scaled up and isolated */
 .switch-pill {
     position: relative;
     display: inline-block;
-    /* Increased sizing to make it more prominent and clickable */
     width: 150px; 
     height: 75px;
-    /* Forces the pill itself to sit on the absolute topmost layer */
     z-index: 100; 
     cursor: pointer;
 }
 
-.switch-pill input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
+.switch-pill input { opacity: 0; width: 0; height: 0; }
 
 .slider {
     position: absolute;
@@ -334,14 +233,11 @@ body.bg-step-2 .portfolio-fixed-box.is-highlighting {
     border-radius: 100px;
 }
 
-body.bg-step-2 .slider {
-    background-color: rgba(255, 255, 255, 0.25);
-}
+body.bg-step-2 .slider { background-color: rgba(255, 255, 255, 0.25); }
 
 .slider:before {
     position: absolute;
     content: "";
-    /* Proportionally scaled inner toggle knob */
     height: 65px;
     width: 65px;
     left: 4px;
@@ -351,19 +247,10 @@ body.bg-step-2 .slider {
     border-radius: 50%;
 }
 
-input:checked + .slider {
-    background-color: rgba(0, 0, 0, 0.35);
-}
-body.bg-step-2 input:checked + .slider {
-    background-color: rgba(255, 255, 255, 0.5);
-}
+input:checked + .slider { background-color: rgba(0, 0, 0, 0.35); }
+body.bg-step-2 input:checked + .slider { background-color: rgba(255, 255, 255, 0.5); }
+input:checked + .slider:before { transform: translateX(77px); }
 
-input:checked + .slider:before {
-    /* (150px track width) - (65px knob width) - (8px for left/right padding) = 77px */
-    transform: translateX(77px); 
-}
-
-/* --- Dismantle Typography Core Rules --- */
 .target-text .letter {
     display: inline-block;
     white-space: pre;
@@ -371,7 +258,101 @@ input:checked + .slider:before {
     transform-origin: center;
 }
 
-/* Crucial Fix: Prevents exploded letters from blocking mouse events or layout clicks */
-.target-text .letter.exploded {
-    pointer-events: none;
+.target-text .letter.exploded { pointer-events: none; }
+
+.heart-shape-svg {
+    transition: color 0.3s ease; 
+    cursor: pointer;
+}
+
+.heart-container:hover .heart-shape-svg {
+    color: #E75047; 
+}
+
+.make-btn {
+    display: inline-block;
+    appearance: none;
+    
+    font-size: 0.35em; 
+    padding: 0.2em 0.6em;
+    margin-left: 0.2em;
+    vertical-align: middle;
+    cursor: pointer;
+    
+    background-color: var(--color-offwhite);
+    color: var(--color-blue);
+    border: none;
+    border-radius: 10px; 
+    
+    box-shadow: 0px 8px 0px #1E1C59; 
+    transform: translateY(-8px);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+
+.make-btn:active {
+    box-shadow: 0px 0px 0px #1E1C59;
+    transform: translateY(0px);
+}
+
+
+.make-btn {
+    display: inline-block;
+    appearance: none;
+    font-size: 0.35em; 
+    padding: 0.2em 0.6em;
+    margin-left: 0.2em;
+    vertical-align: middle;
+    cursor: pointer;
+    
+    background-color: var(--color-offwhite);
+    color: var(--color-blue);
+    border: none;
+    border-radius: 10px; 
+    
+    box-shadow: 0px 8px 0px #1E1C59; 
+    transform: translateY(-8px); 
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+
+.make-btn:active {
+    box-shadow: 0px 0px 0px #1E1C59;
+    transform: translateY(0px);
+}
+
+.make-btn.is-toggled {
+    box-shadow: 0px 0px 0px #1E1C59;
+    transform: translateY(0px);
+    background-color: #1E1C59; 
+    color: var(--color-offwhite);
+}
+
+
+.idea-confetti {
+    position: fixed;
+    font-size: 4vh; 
+    color: var(--text-light); 
+    pointer-events: none; 
+    z-index: 9999;
+    
+    animation: popAndFloat 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes popAndFloat {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5) rotate(var(--rot));
+    }
+    15% {
+        opacity: 1;
+        transform: translate(-50%, -60%) scale(1.1) rotate(var(--rot));
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -100%) scale(1) rotate(var(--rot));
+    }
 }
