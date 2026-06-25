@@ -60,7 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-// --- 2. FLOATING PORTFOLIO WIDGET TRACKING ---
+
+    
     const widget = document.getElementById('portfolio-widget');
     const anchor = document.querySelector('.portfolio-tracking-anchor');
 
@@ -73,24 +74,21 @@ document.addEventListener("DOMContentLoaded", () => {
         
         widget.style.transition = 'none';
         
-        // Clear styles to let the box snap to its natural width
         widget.style.left = '';
         widget.style.width = '';
         widget.style.height = '';
         
-        // Anchor to the right temporarily to measure (Checks if mobile to match CSS top value)
         widget.style.right = '20px';
         widget.style.top = window.innerWidth <= 768 ? '16px' : '24px';
         
         defaultWidth = widget.offsetWidth;
         defaultHeight = widget.offsetHeight;
         
-        // Clear the right anchor and mathematically lock the left coordinate
         widget.style.right = ''; 
         const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
         widget.style.left = `${viewportWidth - defaultWidth - 20}px`;
         
-        widget.offsetHeight; // Reflow
+        widget.offsetHeight; 
         widget.style.transition = ''; 
         updateWidgetPosition();
     }
@@ -102,8 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
         const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
-        // CHROME FIX 1: Measure the center of the text, not the absolute bottom edge.
-        // This stops Chrome's shrinking URL bar from breaking the bounding math.
+   
         const anchorCenterY = anchorRect.top + (anchorRect.height / 2);
 
         const isInViewport = (
@@ -114,14 +111,12 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (isInViewport) {
-            // Morph into highlight state
             widget.classList.add('is-highlighting');
             widget.style.top = `${anchorRect.top - 6}px`;     
             widget.style.left = `${anchorRect.left - 10}px`;  
             widget.style.width = `${anchorRect.width + 20}px`;
             widget.style.height = `${anchorRect.height + 12}px`;
         } else {
-            // Glide smoothly back to top right
             widget.classList.remove('is-highlighting');
             widget.style.top = window.innerWidth <= 768 ? '16px' : '24px';
             widget.style.width = `${defaultWidth}px`;
@@ -131,9 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // CHROME FIX 2: Double-lock the font loading. 
-    // We check fonts.ready, but ALSO force a recalculation on window.onload 
-    // to guarantee Chrome measures the text only after Typekit is 100% painted.
+
     if (document.fonts) {
         document.fonts.ready.then(setupWidgetDimensions);
     }
@@ -141,8 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener('scroll', updateWidgetPosition);
     
-    // CHROME FIX 3: Only recalculate dimensions if the screen width changes.
-    // This stops the shrinking mobile URL bar from causing the widget to flicker.
+
     window.addEventListener('resize', () => {
         if (window.innerWidth !== lastWindowWidth) {
             lastWindowWidth = window.innerWidth;
