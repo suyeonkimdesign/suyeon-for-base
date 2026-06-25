@@ -483,3 +483,66 @@ input:checked + .slider:before { transform: translateX(77px); }
         transform: translate(-50%, -100%) scale(1) rotate(var(--rot));
     }
 }
+
+
+@media (max-width: 768px) {
+    
+
+    .portfolio-fixed-box {
+        font-size: 1.15rem; 
+        padding: 10px 16px;
+        top: 16px; 
+    }
+
+
+    .switch-pill {
+        width: 80px; 
+        height: 40px;
+    }
+    
+    .slider:before {
+        height: 34px;
+        width: 34px;
+        left: 3px;
+        bottom: 3px;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(40px); 
+    }
+
+    .interactive-container {
+        gap: 8px; 
+    }
+
+   
+    .base-logo {
+        height: 0.6em; 
+    }
+
+    .heart-shape-svg {
+        height: 0.9em; 
+        top: -0.05em;
+    }
+
+    .speech-bubble {
+        font-size: 0.35em; 
+        padding: 12px 16px;
+        max-width: 220px; 
+        bottom: 120%; 
+    }
+    
+    .make-btn {
+        font-size: 0.45em; 
+        padding: 0.25em 0.7em;
+    }
+
+
+    .outro-section .text-link {
+
+        white-space: normal; 
+
+        word-wrap: break-word;
+        word-break: break-word; 
+    }
+}
